@@ -25,7 +25,6 @@
 (straight-use-package 'flycheck-credo)
 (straight-use-package 'flycheck-elixir)
 (straight-use-package 'flycheck-dialyxir)
-
 (straight-use-package 'company)
 (straight-use-package 'projectile)
 (straight-use-package 'elixir-ts-mode)
@@ -48,12 +47,15 @@
 	     '(elixir-ts-mode "~/.emacs.d/elixir-ls/release/language_server.sh"))
 
 (add-to-list 'eglot-server-programs
-	     '(java-mode "~/.emacs.d/jdtls/target/repository/bin/jdtls -configuration ~/.cache/jdtls -data ~/.emacs.d/jdtls/data"))
+	     '(java-ts-mode "~/.emacs.d/jdtls/bin/jdtls" "-configuration" "~/.cache/jdtls" "-data" "~/.emacs.d/jdtls/data"))
+
+(add-to-list 'eglot-server-programs
+	     '(java-mode "~/.emacs.d/jdtls/bin/jdtls" "-configuration" "~/.cache/jdtls" "-data" "~/.emacs.d/jdtls/data"))
 
 (change-theme 'solarized-light 'solarized-dark)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'after-init-hook #'global-company-mode)
 
 ;; When you have an active region that spans multiple lines, the following will add a cursor to each line:
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
