@@ -30,8 +30,6 @@
 (straight-use-package 'elixir-ts-mode)
 (straight-use-package 'multiple-cursors)
 (straight-use-package 'magit)
-(straight-use-package 'code-review)
-(straight-use-package 'forge)
 
 (require 'theme-changer)
 (require 'eglot)
@@ -40,11 +38,6 @@
 (setq calendar-location-name "Tallinn, Estonia")
 (setq calendar-latitude 58.5953)
 (setq calendar-longitude 25.0136)
-
-(setq code-review-fill-column 80)
-(setq code-review-new-buffer-window-strategy #'switch-to-buffer)
-(setq code-review-download-dir "/tmp/code-review/")
-(setq code-review-auth-login-marker 'forge)
 
 (add-to-list 'default-frame-alist
              '(font . "Monospace 17"))
@@ -63,8 +56,6 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'after-init-hook #'global-company-mode)
-
-(add-hook 'code-review-mode-hook #'emojify-mode)
 
 ;; When you have an active region that spans multiple lines, the following will add a cursor to each line:
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
