@@ -61,6 +61,7 @@
 (straight-use-package 'wgrep)
 (straight-use-package 'transient)
 (straight-use-package 'savehist)
+(straight-use-package 'copilot)
 
 (require 'theme-changer)
 (require 'eglot)
@@ -116,6 +117,8 @@
 (add-hook 'yaml-mode-hook
           (lambda ()
             (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+(add-hook 'prog-mode-hook 'copilot-mode)
 
 (use-package lsp-mode
   :init
@@ -356,6 +359,14 @@
   ;; (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
 )
 
+(use-package copilot
+  :vc (:url "https://github.com/copilot-emacs/copilot.el"
+            :rev :newest
+            :branch "main"))
+
+(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+
 ;; When you have an active region that spans multiple lines, the following will add a cursor to each line:
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 ;; When you want to add multiple cursors not based on continuous lines, but based on keywords in the buffer, use:
@@ -376,8 +387,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" default)))
+ '(package-vc-selected-packages
+   '((copilot :url "https://github.com/copilot-emacs/copilot.el" :branch
+	      "main"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
